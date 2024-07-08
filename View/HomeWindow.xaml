@@ -1,0 +1,707 @@
+﻿<Page x:Class="PresentationTraker.View.HomeWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PresentationTraker.View"
+      xmlns:md ="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:ch ="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="HomeWindow"
+      Loaded="Page_Loaded">
+    <Page.Resources >
+        <Style TargetType="Label" x:Key="SyleForLabel">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+        </Style>
+        <Style TargetType="Border" x:Key="StyleForBorder">
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderThickness" Value="4"/>
+        </Style>
+        <Style TargetType="Ellipse" x:Key="StyleForEllipse">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Opacity" Value="0.3"/>
+        </Style>
+        <Style TargetType="Label" x:Key="PanelStyleForLabel">
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        <Style TargetType="md:PackIcon" x:Key="StyleForIcon">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="StyleForTextBlock">
+            <Setter Property="Foreground" Value="#636363"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+        <Style TargetType="Label" x:Key="TaskListStyleForLabel" >
+            <Setter Property="Foreground" Value="#636363"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontFamily" Value="Trebuchet MS"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+    <Grid Background="#F6F5EF">
+        <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+            <!--panel1-->
+        <Border Grid.Column="0" 
+                Grid.Row="0" 
+                Margin="20,15,10,15" 
+                Style="{StaticResource StyleForBorder}">
+            <Grid Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="10,0">
+                    <Ellipse Fill="#F37C6D" 
+                             Style="{StaticResource StyleForEllipse}"/>
+                    <md:PackIcon Kind="CheckboxBlankOutline"
+                                 Foreground="#F37C6D"
+                                 Style="{StaticResource StyleForIcon}"/>
+                    <md:PackIcon Kind="SineWave" 
+                                 Height="15"
+                                 Width="15"
+                                 Foreground="#F37C6D" 
+                                 Style="{StaticResource StyleForIcon}"/>
+                </Grid>
+                <StackPanel Orientation="Vertical" 
+                            VerticalAlignment="Center"
+                            Grid.Column="1">
+                    <Label Style="{StaticResource PanelStyleForLabel}">Weekly Activity</Label>
+                    <Label Content="{Binding ActivityTime}" 
+                           Style="{StaticResource PanelStyleForLabel}"
+                           FontSize="13" 
+                           Foreground="#B7B7B7"/>
+                </StackPanel>
+                <!--panel line-->
+                <Grid Grid.Column="2">
+                    <Path Stroke="#F37C6D" StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="15,46">
+                                    <QuadraticBezierSegment Point1="20,70" Point2="35,40" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#F37C6D" StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="35,40">
+                                    <QuadraticBezierSegment Point1="40,30" Point2="50,40" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#F37C6D" StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="50,40">
+                                    <QuadraticBezierSegment Point1="60,50" Point2="70,10" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                </Grid>
+            </Grid>
+        </Border>
+        <!--panel2-->
+        <Border Grid.Column="1"
+                Grid.Row="0" 
+                Margin="10,15,10,15"
+                Style="{StaticResource StyleForBorder}">
+            <Grid Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0" Margin="10,0">
+                    <Ellipse Opacity="0.3"
+                             Fill="#83DDEA"
+                             Style="{StaticResource StyleForEllipse}"/>
+                    <md:PackIcon Kind="CheckboxBlankOutline"
+                                 Foreground="#83DDEA"
+                                 Style="{StaticResource StyleForIcon}"/>
+                    <md:PackIcon Kind="CalendarClock"
+                                 Style="{StaticResource StyleForIcon}" 
+                                 Height="15" 
+                                 Width="15" 
+                                 Foreground="#83DDEA"/>
+                </Grid>
+                <StackPanel Orientation="Vertical" 
+                            VerticalAlignment="Center" 
+                            Grid.Column="1">
+                    <Label Content="Productive time" 
+                           Style="{StaticResource PanelStyleForLabel}"/>
+                    <Label FontSize="13" Foreground="#B7B7B7" 
+                           Content="{Binding ProductiveTime}"
+                           Style="{StaticResource PanelStyleForLabel}"/>
+                </StackPanel>
+                <!--panel line-->
+                <Grid Grid.Column="2">
+                    <Path Stroke="#83DDEA"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="15,45">
+                                    <QuadraticBezierSegment Point1="20,40" Point2="25,60" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#83DDEA"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="25,60">
+                                    <QuadraticBezierSegment Point1="30,70" Point2="35,30" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#83DDEA"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="35,30">
+                                    <QuadraticBezierSegment Point1="40,10" Point2="45,40" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#83DDEA"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="45,40">
+                                    <QuadraticBezierSegment Point1="50,55" Point2="65,30" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#83DDEA"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="65,30">
+                                    <QuadraticBezierSegment Point1="70,25" Point2="75,30" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                </Grid>
+            </Grid>
+        </Border>
+        <!--panel3-->
+        <Border Grid.Column="2" 
+                Grid.Row="0"
+                Margin="10,15,20,15"
+                Style="{StaticResource StyleForBorder}">
+            <Grid Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0"
+                      Margin="10,0">
+                    <Ellipse Fill="#FFAA3E" 
+                             Style="{StaticResource StyleForEllipse}"/>
+                    <md:PackIcon Kind="CheckboxBlankOutline"
+                                 Style="{StaticResource StyleForIcon}"
+                                 Foreground="#FFAA3E"/>
+                    <md:PackIcon Kind="BookOpenOutline"
+                                 Style="{StaticResource StyleForIcon}"
+                                 Height="15"
+                                 Width="15"
+                                 Foreground="#FFAA3E"/>
+                </Grid>
+                <StackPanel Orientation="Vertical"
+                            VerticalAlignment="Center"
+                            Grid.Column="1">
+                    <Label Style="{StaticResource PanelStyleForLabel}"
+                           Content="Research Activiry"/>
+                    <Label Style="{StaticResource PanelStyleForLabel}"
+                           FontSize="13"
+                           Foreground="#B7B7B7"
+                           Content="0h 0m 0s"/>
+                </StackPanel>
+                <!--line panel-->
+                <Grid Grid.Column="2">
+                    <Path Stroke="#FFAA3E"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="10,65">
+                                    <QuadraticBezierSegment Point1="15,55" Point2="20,60" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#FFAA3E"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="20,60">
+                                    <QuadraticBezierSegment Point1="25,65" Point2="30,45" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#FFAA3E"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="30,45">
+                                    <QuadraticBezierSegment Point1="35,35" Point2="40,45" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#FFAA3E"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="40,45">
+                                    <QuadraticBezierSegment Point1="45,55" Point2="50,40" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                    <Path Stroke="#FFAA3E"
+                          StrokeThickness="2">
+                        <Path.Data>
+                            <PathGeometry>
+                                <PathFigure IsClosed="False" StartPoint="50,40">
+                                    <QuadraticBezierSegment Point1="55,25" Point2="60,25" />
+                                </PathFigure>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                </Grid>
+            </Grid>
+        </Border>
+        <!--ListTAsks-->
+            <Border Grid.Row="1" Grid.ColumnSpan="2" Margin="20,0,10,15"
+                    Style="{StaticResource StyleForBorder}">
+                <Grid Background="White">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!--header task panel-->
+                    <Grid VerticalAlignment="Center"
+                          Margin="10,0"
+                          MouseLeftButtonDown="Grid_MouseLeftButtonDown_1">
+                        <Label Content="Time Sheet"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource SyleForLabel}"/>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center">
+                            <Label Content="date:"
+                                   Style="{StaticResource SyleForLabel}"/>
+                            <Button Command="{Binding AddDayToDateCommand}"
+                                    Background="{x:Null}"
+                                    Padding="0"
+                                    BorderThickness="0"
+                                    Height="20"
+                                    Width="20">
+                                <md:PackIcon Kind="ChevronLeft"/>
+                            </Button>
+                            <Label Content="{Binding SelectedDate}"
+                                   HorizontalContentAlignment="Center"
+                                   Width="85"
+                                   Style="{StaticResource SyleForLabel}"/>
+                            <Button Command="{Binding SubtractDayToDateCommand}"
+                                    Background="{x:Null}"
+                                    Padding="0"
+                                    BorderThickness="0"
+                                    Height="20"
+                                    Width="20">
+                                <md:PackIcon Kind="ChevronRight"/>
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                    <!--header clumns-->
+                    <Grid Grid.Row="1"
+                          Margin="10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label  Content="App/Web app"
+                                HorizontalContentAlignment="Left"
+                                Style="{StaticResource SyleForLabel}"
+                                Grid.Column="0"/>
+                        <Label Grid.Column="1"
+                               Style="{StaticResource SyleForLabel}"
+                               HorizontalAlignment="Center"
+                               Content="Date"/>
+                        <Label Grid.Column="2"
+                               HorizontalAlignment="Center"
+                               Style="{StaticResource SyleForLabel}"
+                               Content="Start time"/>
+                        <Label Grid.Column="3"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource SyleForLabel}"
+                       Content="EndTime"/>
+                        <Label Grid.Column="4"
+                               HorizontalAlignment="Right"
+                               Style="{StaticResource SyleForLabel}"
+                               Content="Duration"/>
+                    </Grid>
+                    <ScrollViewer Grid.Row="2"
+                          VerticalScrollBarVisibility="Hidden">
+                        <ItemsControl ItemsSource="{Binding ListPrograms}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="30"
+                                          VerticalAlignment="Center"
+                                          Margin="10,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Background="{x:Null}"
+                                                Command="{Binding DataContext.SelectProgramCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
+                                                CommandParameter="{Binding}"
+                                                BorderThickness="0"
+                                                HorizontalContentAlignment="left"
+                                                Padding="0">
+                                            <StackPanel Orientation="Horizontal"
+                                                        HorizontalAlignment="Left"
+                                                        Grid.Column="0">
+                                                <Grid>
+                                                    <Border BorderThickness="2"
+                                                            Background="{Binding StatusProgram}"
+                                                            Opacity=".3"
+                                                            Height="25"
+                                                            CornerRadius="5"
+                                                            Width="25">
+                                                    </Border>
+                                                    <Label Content="{Binding Number}"
+                                                           Style="{StaticResource SyleForLabel}"
+                                                           Foreground="{Binding StatusProgram}"
+                                                           FontSize="11"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                                </Grid>
+                                                <TextBlock Text="{Binding Name}"
+                                                           Width="180"
+                                                           Style="{StaticResource StyleForTextBlock}"
+                                                           Foreground="#636363"/>
+                                            </StackPanel>
+                                        </Button>
+                                    <Label Grid.Column="1"
+                                           Style="{StaticResource TaskListStyleForLabel}"
+                                           Content="{Binding CreatedAt}"/>
+                                    <Label Grid.Column="2"
+                                           Style="{StaticResource TaskListStyleForLabel}"
+                                           Content="{Binding EntryTime}"/>
+                                    <Label Grid.Column="3"
+                                           Style="{StaticResource TaskListStyleForLabel}"
+                                           Content="{Binding ExitTime}"/>
+                                    <Label Grid.Column="4"
+                                               Foreground="#636363"
+                                               HorizontalContentAlignment="Right"
+                                               Style="{StaticResource SyleForLabel}"
+                                               Content="{Binding Duration}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+            <!--list employees-->
+        <Border Grid.Row="2" 
+                    x:Name="EmployeeListPanel"
+                    Grid.ColumnSpan="2"
+                    Margin="20,0,10,15"  
+                    Height="30"
+                    Style="{StaticResource StyleForBorder}">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" 
+                          Background="White"
+                          MouseLeftButtonDown="Grid_MouseLeftButtonDown"
+                          VerticalAlignment="Center">
+                    <Label Content="List employees" 
+                               Margin="10,0,10,5" 
+                               Style="{StaticResource SyleForLabel}"/>
+                </Grid>
+                <!--header table-->
+                <Grid Grid.Row="1"
+                          Margin="10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Device id"
+                               Grid.Column="0"
+                               Style="{StaticResource SyleForLabel}"/>
+                    <Label Content="Last name"
+                               HorizontalAlignment="Center"
+                               Grid.Column="1"
+                               Style="{StaticResource SyleForLabel}"/>
+                    <Label Content="First name"
+                               HorizontalAlignment="Center"
+                               Grid.Column="2"
+                               Style="{StaticResource SyleForLabel}"/>
+                    <Label Content="Patronymic"
+                               HorizontalAlignment="Center"
+                               Grid.Column="3"
+                               Style="{StaticResource SyleForLabel}"/>
+                    <Label Content="Position"
+                               HorizontalAlignment="Right"
+                               Grid.Column="4"
+                               Style="{StaticResource SyleForLabel}"/>
+                </Grid>
+                <Grid Grid.Row="2"
+                          Margin="10,0">
+                    <ScrollViewer  VerticalScrollBarVisibility="Hidden">
+                        <ItemsControl ItemsSource="{Binding ListProfiles}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Button Padding="0"
+                                                Background="{x:Null}"
+                                                Command="{Binding DataContext.SelectEmployeeCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Page}}"
+                                                CommandParameter="{Binding}"
+                                                BorderThickness="0">
+                                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                                                <Grid>
+                                                    <Border Background="#F37C6D"
+                                                            Opacity="0.3"
+                                                            CornerRadius="5"
+                                                            Width="25"
+                                                            Height="25">
+                                                    </Border>
+                                                    <md:PackIcon Kind="AccountOutline" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                                                 Foreground="#F37C6D"/>
+
+                                                </Grid>
+                                                <TextBlock Text="{Binding DeviceId}" 
+                                                           Style="{StaticResource StyleForTextBlock}"
+                                                           Margin="2,0,0,0"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <Label Content="{Binding LastName}" 
+                                                   Style="{StaticResource TaskListStyleForLabel}" 
+                                                   Grid.Column="1"/>
+                                        <Label Content="{Binding FirstName}"
+                                                   Style="{StaticResource TaskListStyleForLabel}" 
+                                                   Grid.Column="2"/>
+                                        <Label Content="{Binding Patronymic}" 
+                                                   Style="{StaticResource TaskListStyleForLabel}" 
+                                                   Grid.Column="3"/>
+                                        <Label Content="{Binding Position}" 
+                                                   Style="{StaticResource TaskListStyleForLabel}" 
+                                                   Grid.Column="4" 
+                                                   HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Border>
+        <!--diagram panel-->
+        <Border Grid.Row="1" 
+            Grid.RowSpan="2"
+            Grid.Column="2"
+            Margin="10,0,20,15"
+            Style="{StaticResource StyleForBorder}">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                      Margin="10,0">
+                    <Label Style="{StaticResource SyleForLabel}"
+                           Content="Reporst"/>
+                    <Label Style="{StaticResource SyleForLabel}"
+                           Content="{Binding SelectedDate}"
+                           HorizontalAlignment="Right"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid>
+                        <ch:PieChart x:Name="Graphick"  Hoverable="False" DataTooltip="{x:Null}" InnerRadius="65" Height="180" Width="180">
+                            <ch:PieChart.Series>
+                                <ch:PieSeries Title="Maria" Values="{Binding ActivityChart}" DataLabels="False" Fill="#F37C6D"/>
+                                <ch:PieSeries Title="Maria" Values="{Binding ProductiveChatr}" DataLabels="False" Fill="#83DDEA"/>
+                            </ch:PieChart.Series>
+                        </ch:PieChart>
+                        <Label Content="{Binding ActivityTime}"
+                               Style="{StaticResource SyleForLabel}"
+                               FontSize="15"
+                               Foreground="#636363"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2"
+                      Margin="10,10">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Height="10" Width="10" Fill="#F37C6D"/>
+                            <Label Content="Activity time"
+                            Style="{StaticResource SyleForLabel}"/>
+                            <Label Content="{Binding ActivityTime}"
+                            Style="{StaticResource SyleForLabel}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Height="10" Width="10" Fill="#83DDEA"/>
+                            <Label Content="Productiv time"
+                            Style="{StaticResource SyleForLabel}"/>
+                            <Label Content="{Binding ProductiveTime}"
+                            Style="{StaticResource SyleForLabel}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Height="10" Width="10" Fill="#FFAA3E"/>
+                            <Label Content="ResearchTime"
+                            Style="{StaticResource SyleForLabel}"/>
+                            <Label Content="0h 0m 0s"
+                             Style="{StaticResource SyleForLabel}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+
+        </Border>
+        <Border Grid.Row="1" 
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                Margin="10,0,20,15"
+                Visibility="{Binding StateVisitbilityPersonDetails}"
+                Style="{StaticResource StyleForBorder}"
+                Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Padding="0"
+                        Grid.Row="0"
+                        Command="{Binding ManageProfileDetailsPanelCommand}"
+                        HorizontalAlignment="Right"
+                            Height="20"
+                            Background="{x:Null}"
+                            BorderThickness="0">
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <md:PackIcon Kind="ArrowRight" VerticalAlignment="Center" Height="15" Width="15"/>
+                    </StackPanel>
+                </Button>
+                <Label Content="All data about selected employee"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Grid.Row="0"
+                       Grid.RowSpan="2"
+                       Style="{StaticResource SyleForLabel}"/>
+                <StackPanel Orientation="Vertical"
+                            Margin="10,0"
+                            Grid.Row="2">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Name:" Style="{StaticResource  TaskListStyleForLabel}"/>
+                        <Label Content="{Binding SelectedProfile.FirstName}" Style="{StaticResource SyleForLabel}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Surname:"  Style="{StaticResource  TaskListStyleForLabel}"/>
+                        <Label Content="{Binding SelectedProfile.LastName}" Style="{StaticResource SyleForLabel}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Patronymic:"  Style="{StaticResource  TaskListStyleForLabel}"/>
+                        <Label Content="{Binding SelectedProfile.Patronymic}" Style="{StaticResource SyleForLabel}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Position:"  Style="{StaticResource  TaskListStyleForLabel}"/>
+                        <Label Content="{Binding SelectedProfile.Position}" Style="{StaticResource SyleForLabel}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Departament:"  Style="{StaticResource  TaskListStyleForLabel}"/>
+                        <Label Content="{Binding SelectedProfile.Departament}" Style="{StaticResource SyleForLabel}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Email:"  Style="{StaticResource  TaskListStyleForLabel}"/>
+                        <Label Content="{Binding SelectedProfile.EmailAddress}" Style="{StaticResource SyleForLabel}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="DeviceId:"  Style="{StaticResource  TaskListStyleForLabel}"/>
+                        <Label Content="{Binding SelectedProfile.DeviceId}" Style="{StaticResource SyleForLabel}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="State program:" Style="{StaticResource TaskListStyleForLabel}"/>
+                        <Ellipse Height="15" Width="15" Fill="{Binding ColorSelectedPerson}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
